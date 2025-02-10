@@ -1,0 +1,73 @@
+/* General Page Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #228B22; /* Forest Green */
+  color: white;
+  text-align: center;
+  margin: 20px;
+  padding: 020px;
+}
+
+/* Centered Form Container */
+.container {
+  background: rgba(226, 133, 133, 0.952); /* Slight Transparency */
+  padding: 5px;
+  width: 40%;
+  margin: 5px auto;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Form Title */
+h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+/* Input Fields */
+input[type="text"], 
+input[type="email"], 
+input[type="tel"] {
+  width: 90%;
+  padding: 5px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  background: white;
+  color: #333;
+  outline: none;
+}
+
+/* Input Focus Effect */
+input:focus {
+  border: 2px solid #fff;
+}
+
+/* Submit Button */
+button {
+  background-color: #FFD700; /* Gold */
+  color: #333;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #FFA500; /* Orange */
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+      width: 80%;
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbzFgECtR1WipnFjwJjxTZgZl6Q7rn2CUicQphMLHs7h0Z1vl-uZS-rYcBkbzKurFPY/exec", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: { "Content-Type": "application/json" },
+                mode: "no-cors" // ✅ Bypasses CORS restrictions
+            })
+            .then(() => {
+                alert("Data submitted successfully!");
+                document.getElementById("userForm").reset();
+            })
+            .catch(error => {
+                alert("Error submitting data.");
+                console.error("Error:", error);
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>User Data Collection</h2>
+        <form id="userForm" onsubmit="submitForm(event)">
+            
+            <!-- Name Field -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="User Name" required><br><br>
+
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="User Email" required><br><br>
+
+            <!-- Phone Field -->
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" placeholder="User Phone Number" required><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
