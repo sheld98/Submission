@@ -1,73 +1,342 @@
-/* General Page Styles */
+/* General Reset */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light background for the entire page */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Apply 25px margin to the left for all pages */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #228B22; /* Forest Green */
-  color: white;
-  text-align: center;
-  margin: 20px;
-  padding: 020px;
+    margin-left: 25px;
 }
 
-/* Centered Form Container */
-.container {
-  background: rgba(226, 133, 133, 0.952); /* Slight Transparency */
-  padding: 5px;
-  width: 40%;
-  margin: 5px auto;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+/* Header Styling */
+header {
+    background-color: #00796b; /* Dark green background */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Title */
-h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
+.logo {
+    font-size: 32px; /* Large font size */
+    font-weight: bold;
+    color: #ff9800; /* Orange color */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s, transform 0.3s;
 }
 
-/* Input Fields */
-input[type="text"], 
-input[type="email"], 
-input[type="tel"] {
-  width: 90%;
-  padding: 5px;
-  margin: 5px 0;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  background: white;
-  color: #333;
-  outline: none;
+.logo:hover {
+    color: #e68900; /* Darker orange on hover */
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
-/* Input Focus Effect */
-input:focus {
-  border: 2px solid #fff;
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 15px;
 }
 
-/* Submit Button */
-button {
-  background-color: #FFD700; /* Gold */
-  color: #333;
-  padding: 10px 20px;
-  font-size: 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: all 0.3s ease-in-out;
+.nav-links a {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Button Hover Effect */
-button:hover {
-  background-color: #FFA500; /* Orange */
-  color: white;
-  transform: scale(1.05);
+.nav-links a:hover {
+    background-color: #004d40; /* Darker green on hover */
+    border-radius: 5px;
+}
+
+/* Login Button Styling */
+.login-btn {
+    background-color: #228B22; /* Forest green */
+    border-radius: 5px;
+    color: white;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #1E7A1E; /* Darker forest green on hover */
+    transform: scale(1.05);
+}
+
+/* Permanent Sidebar Styling */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 80px; /* Below the header */
+    width: 250px;
+    height: calc(100% - 80px); /* Full height minus header */
+    background: #004d40;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    color: #ff9800; /* Orange color */
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    background: #00796b;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li:hover {
+    background: #00695c;
+}
+
+.uploadBtn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.uploadBtn:hover {
+    background-color: #e68900;
+}
+
+/* Main Content Styling */
+.content {
+    margin-left: 270px; /* Offset for the sidebar */
+    padding: 20px;
+    text-align: left;
+    max-width: 800px;
+}
+
+.content h1 {
+    font-size: 36px;
+    color: #00796b; /* Dark green */
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    font-size: 24px;
+    color: #ff9800; /* Orange */
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.content h3 {
+    font-size: 20px;
+    color: #00796b; /* Dark green */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.content ul li {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.content ul li strong {
+    color: #00796b; /* Dark green */
+}
+
+/* Login Form Styling */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background: #004d40; /* Dark green background */
+    padding: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.login-container h2 {
+    color: #ff9800; /* Orange color */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #228B22; /* Forest green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.login-btn:hover {
+    background: #1E7A1E; /* Darker forest green on hover */
+    color: white;
+}
+
+.register-link {
+    margin-top: 15px;
+    color: white;
+}
+
+.register-link a {
+    color: #ff9800; /* Orange color for link */
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Add Blog Button Styling */
+.add-blog-btn {
+    background-color: #228B22; /* Forest green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 20px;
+}
+
+.add-blog-btn:hover {
+    background-color: #1E7A1E; /* Darker forest green */
+    transform: scale(1.05);
+}
+
+/* Blog Post Styling */
+.blog-post {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.blog-post h3 {
+    font-size: 20px;
+    color: #00796b; /* Dark green */
+    margin-bottom: 10px;
+}
+
+.blog-post p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.blog-post small {
+    font-size: 14px;
+    color: #666;
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
-  .container {
-      width: 80%;
-  }
+@media (max-width: 768px) {
+    body {
+        margin-left: 15px; /* Slightly reduce margin for smaller screens */
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sidebar {
+        width: 100%; /* Full width on small screens */
+        position: static; /* Remove fixed positioning */
+        height: auto; /* Auto height */
+        margin-top: 20px; /* Add space below the header */
+    }
+
+    .content {
+        margin-left: 0; /* Remove offset for sidebar */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .content h1 {
+        font-size: 28px;
+    }
+
+    .content h2 {
+        font-size: 22px;
+    }
+
+    .content h3 {
+        font-size: 18px;
+    }
+
+    .content p, .content ul li {
+        font-size: 14px;
+    }
+
+    .login-container {
+        width: 90%;
+        padding: 20px;
+    }
 }

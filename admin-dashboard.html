@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Musanda Alumni 2016 WA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Admin Dashboard</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="logout.html" class="logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <button id="openSidebar">☰</button>
+
+    <aside class="sidebar">
+        <button id="closeSidebar">✖</button>
+        
+        <h2>Manage Announcements</h2>
+        <ul class="announcements">
+            <li>No announcements yet.</li>
+            <button class="uploadBtn" onclick="addAnnouncement()">+</button>
+        </ul>
+
+        <h2>Repositories</h2>
+        <ul class="repositories">
+            <li>
+                Welfare Documents 
+                <button class="uploadBtn" onclick="uploadDocument('welfare')">+</button>
+            </li>
+            <li>
+                Financial Records 
+                <button class="uploadBtn" onclick="uploadDocument('financial')">+</button>
+            </li>
+            <li>
+                Constitution 
+                <button class="uploadBtn" onclick="uploadDocument('constitution')">+</button>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="content dashboard-content">
+        <h1>Welcome, Admin</h1>
+        <p>Manage welfare announcements and upload documents.</p>
+
+        <h2>Recent Announcements</h2>
+        <ul id="announcementList">
+            <li>No announcements yet.</li>
+        </ul>
+
+        <h2>Upload Documents</h2>
+        <input type="file" id="fileUpload" hidden>
+        <button onclick="triggerFileUpload()">Upload File</button>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
