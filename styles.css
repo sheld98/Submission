@@ -1,12 +1,4 @@
-/* General Reset */
-html, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Light background for the entire page */
-}
-
+/* ===== General Reset ===== */
 * {
     margin: 0;
     padding: 0;
@@ -14,32 +6,38 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
+html, body {
+    background-color: #f4f4f4; /* Light background for the entire page */
+}
+
 /* Apply 25px margin to the left for all pages */
 body {
     margin-left: 25px;
 }
 
-/* Header Styling */
+/* ===== Header Styling ===== */
 header {
     background-color: #00796b; /* Dark green background */
     padding: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Space between logo and nav-links */
     align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative; /* Ensures the header is a positioning context */
 }
 
+/* Logo Styling */
 .logo {
-    font-size: 32px; /* Large font size */
+    font-size: 32px;
     font-weight: bold;
-    color: #ff9800; /* Orange color */
+    color: #ff9800;
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: color 0.3s, transform 0.3s;
 }
 
 .logo:hover {
-    color: #e68900; /* Darker orange on hover */
+    color: #e68900;
     transform: scale(1.05); /* Slight zoom effect */
 }
 
@@ -47,6 +45,7 @@ header {
 .nav-links {
     display: flex;
     gap: 15px;
+    margin-right: 60px; /* Prevent overlap with sidebar toggle */
 }
 
 .nav-links a {
@@ -58,40 +57,54 @@ header {
 }
 
 .nav-links a:hover {
-    background-color: #004d40; /* Darker green on hover */
+    background-color: #004d40;
     border-radius: 5px;
 }
 
-/* Login Button Styling */
-.login-btn {
-    background-color: #228B22; /* Forest green */
-    border-radius: 5px;
+/* Sidebar Toggle Button */
+#sidebarToggle {
+    background: #228B22;
+    border: none;
+    font-size: 24px;
     color: white;
-    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.login-btn:hover {
-    background-color: #1E7A1E; /* Darker forest green on hover */
-    transform: scale(1.05);
+#sidebarToggle:hover {
+    background-color: #1E7A1E;
 }
 
-/* Permanent Sidebar Styling */
+/* ===== Sidebar Styling ===== */
 .sidebar {
     position: fixed;
-    left: 0;
-    top: 80px; /* Below the header */
+    left: -250px; /* Hidden by default */
+    top: 80px;
     width: 250px;
-    height: calc(100% - 80px); /* Full height minus header */
+    height: calc(100% - 80px);
     background: #004d40;
     color: white;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
     z-index: 1000;
 }
 
+/* Active Sidebar */
+.sidebar.active {
+    left: 0;
+}
+
+/* Sidebar Content */
 .sidebar h2 {
     font-size: 22px;
-    color: #ff9800; /* Orange color */
+    color: #ff9800;
     margin-bottom: 15px;
 }
 
@@ -112,6 +125,7 @@ header {
     background: #00695c;
 }
 
+/* Sidebar Upload Button */
 .uploadBtn {
     background-color: #ff9800;
     color: white;
@@ -126,30 +140,35 @@ header {
     background-color: #e68900;
 }
 
-/* Main Content Styling */
+/* ===== Main Content Styling ===== */
 .content {
     margin-left: 270px; /* Offset for the sidebar */
     padding: 20px;
     text-align: left;
     max-width: 800px;
+    transition: margin-left 0.3s;
+}
+
+.content.active {
+    margin-left: 0; /* No offset when sidebar is open */
 }
 
 .content h1 {
     font-size: 36px;
-    color: #00796b; /* Dark green */
+    color: #00796b;
     margin-bottom: 20px;
 }
 
 .content h2 {
     font-size: 24px;
-    color: #ff9800; /* Orange */
+    color: #ff9800;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 
 .content h3 {
     font-size: 20px;
-    color: #00796b; /* Dark green */
+    color: #00796b;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -175,14 +194,14 @@ header {
 }
 
 .content ul li strong {
-    color: #00796b; /* Dark green */
+    color: #00796b;
 }
 
-/* Login Form Styling */
+/* ===== Login Form Styling ===== */
 .login-container {
     width: 100%;
     max-width: 400px;
-    background: #004d40; /* Dark green background */
+    background: #004d40;
     padding: 30px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -195,7 +214,7 @@ header {
 }
 
 .login-container h2 {
-    color: #ff9800; /* Orange color */
+    color: #ff9800;
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -219,7 +238,7 @@ header {
 .login-btn {
     width: 100%;
     padding: 12px;
-    background: #228B22; /* Forest green */
+    background: #228B22;
     color: white;
     border: none;
     border-radius: 5px;
@@ -229,70 +248,10 @@ header {
 }
 
 .login-btn:hover {
-    background: #1E7A1E; /* Darker forest green on hover */
-    color: white;
+    background: #1E7A1E;
 }
 
-.register-link {
-    margin-top: 15px;
-    color: white;
-}
-
-.register-link a {
-    color: #ff9800; /* Orange color for link */
-    text-decoration: none;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
-}
-
-/* Add Blog Button Styling */
-.add-blog-btn {
-    background-color: #228B22; /* Forest green */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    margin-top: 20px;
-}
-
-.add-blog-btn:hover {
-    background-color: #1E7A1E; /* Darker forest green */
-    transform: scale(1.05);
-}
-
-/* Blog Post Styling */
-.blog-post {
-    background-color: white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.blog-post h3 {
-    font-size: 20px;
-    color: #00796b; /* Dark green */
-    margin-bottom: 10px;
-}
-
-.blog-post p {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
-    margin-bottom: 10px;
-}
-
-.blog-post small {
-    font-size: 14px;
-    color: #666;
-}
-
-/* Responsive Design */
+/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     body {
         margin-left: 15px; /* Slightly reduce margin for smaller screens */
@@ -308,15 +267,20 @@ header {
     }
 
     .sidebar {
-        width: 100%; /* Full width on small screens */
-        position: static; /* Remove fixed positioning */
-        height: auto; /* Auto height */
-        margin-top: 20px; /* Add space below the header */
+        width: 100%;
+        left: -100%; /* Hide sidebar on small screens */
+        position: fixed;
+        height: 100%;
+        margin-top: 0;
+    }
+
+    .sidebar.active {
+        left: 0; /* Show sidebar when active */
     }
 
     .content {
         margin-left: 0; /* Remove offset for sidebar */
-        padding: 10px; /* Reduce padding */
+        padding: 10px;
     }
 
     .content h1 {
@@ -329,10 +293,6 @@ header {
 
     .content h3 {
         font-size: 18px;
-    }
-
-    .content p, .content ul li {
-        font-size: 14px;
     }
 
     .login-container {

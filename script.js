@@ -18,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            // Hardcoded admin credentials
-            const adminEmail = "othienosheldon@gmail.com";
-            const adminPassword = "0720973275";
+            // Retrieve stored admin credentials from localStorage
+            const storedAdminEmail = localStorage.getItem("adminEmail") || "admin@example.com";
+            const storedAdminPassword = localStorage.getItem("adminPassword") || "securepassword123";
 
-            if (email === adminEmail && password === adminPassword) {
+            if (email === storedAdminEmail && password === storedAdminPassword) {
                 // Set login status in localStorage
                 localStorage.setItem("isLoggedIn", "true");
                 window.location.href = "home.html"; // Redirect to home page
@@ -33,23 +33,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Logout Functionality
-    const logoutBtn = document.querySelector(".logout-btn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", function () {
+    const logoutBtns = document.querySelectorAll(".logout-btn");
+    logoutBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
             localStorage.removeItem("isLoggedIn"); // Clear login status
             alert("You have been logged out.");
             window.location.href = "index.html"; // Redirect to login page
         });
-    }
+    });
 
     // Simulate User Role (Admin or Member)
-    const isAdmin = localStorage.getItem("isLoggedIn") === "true"; // Change to true to test admin role
+    const isAdmin = localStorage.getItem("isLoggedIn") === "true";
 
     // Show upload buttons only if user is an admin
     const uploadButtons = document.querySelectorAll(".uploadBtn");
-    if (isAdmin && uploadButtons.length > 0) {
-        uploadButtons.forEach(button => {
-            button.classList.remove("hidden");
+    if (isAdmin) {
+        uploadButtons.forEach(button => button.classList.remove("hidden"));
+    }
+
+    // Sidebar Toggle Functionality
+    const sidebar = document.querySelector(".sidebar");
+    const content = document.querySelector(".content");
+    const toggleButton = document.getElementById("sidebarToggle");
+
+    if (toggleButton) {
+        toggleButton.addEventListener("click", function () {
+            sidebar.classList.toggle("active");
+            document.body.classList.toggle("sidebar-open"); // Helps in styling if needed
         });
     }
 
@@ -79,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
         blogs.push({ title, content, author });
         localStorage.setItem("blogs", JSON.stringify(blogs));
+        loadBlogs(); // Refresh blog list
     }
 
     // Initialize blog posts
@@ -86,24 +97,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (addBlogBtn) {
         addBlogBtn.addEventListener("click", function () {
-            // Prompt for login
             const email = prompt("Enter your email:");
             const password = prompt("Enter your password:");
 
-            // Hardcoded admin credentials
-            const adminEmail = "othienosheldon@gmail.com";
-            const adminPassword = "0720973275";
+            const storedAdminEmail = localStorage.getItem("adminEmail") || "admin@example.com";
+            const storedAdminPassword = localStorage.getItem("adminPassword") || "securepassword123";
 
-            if (email === adminEmail && password === adminPassword) {
-                // Allow admin to add a blog
+            if (email === storedAdminEmail && password === storedAdminPassword) {
                 const blogTitle = prompt("Enter the blog title:");
                 const blogContent = prompt("Enter the blog content:");
                 if (blogTitle && blogContent) {
                     saveBlog(blogTitle, blogContent, "Admin");
-                    loadBlogs(); // Refresh the blog list
                 }
             } else {
-                // Alert normal users they are not allowed
                 alert("You are not allowed to add a blog. Only admins can post.");
             }
         });
