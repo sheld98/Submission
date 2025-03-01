@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership -  Musanda Alumni 2016 WA</title>
+    <title>Membership - Musanda Alumni 2016 WA</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header>
         <div class="logo">Musanda Alumni 2016 WA</div>
         <nav class="nav-links">
-            <a href="home.html">home</a>
+            <a href="home.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="programs.html">Programs</a>
             <a href="membership.html">Membership</a>
@@ -21,40 +21,43 @@
         </nav>
         <button id="sidebarToggle">☰</button> <!-- Toggle Button -->
     </header>
-   
-    <aside class="sidebar">
+
+    <div class="main-container">
+        <!-- Sidebar -->
         <aside class="sidebar">
             <h2>Announcements</h2>
             <ul class="announcements">
                 <li>No new announcements</li>
             </ul>
-    
+
             <h2>Repositories</h2>
             <ul class="repositories">
                 <li><a href="#">Welfare Documents</a></li>
                 <li><a href="#">Financial Records</a></li>
                 <li><a href="#">Constitution</a></li>
             </ul>
-        </aside>
+        </aside> <!-- ✅ Closing tag was missing -->
 
-    <main class="content">
-        <h1>Membership</h1>
-        <h2>Eligibility</h2>
-        <p>Membership is open to individuals who attended Musanda Secondary School around 2014, 2015, and 2016.</p>
+        <!-- Main Content -->
+        <main class="content">
+            <h1>Membership</h1>
+            <h2>Eligibility</h2>
+            <p>Membership is open to individuals who attended Musanda Secondary School around 2014, 2015, and 2016.</p>
 
-        <h2>Fees & Contributions</h2>
-        <ul>
-            <li>Founder members pay a registration fee of Ksh. 200 and a monthly contribution of Ksh. 200.</li>
-            <li>New members pay a joining fee of Ksh. 500 plus Ksh. 200 per month.</li>
-            <li>Annual membership renewal costs Ksh. 500.</li>
-        </ul>
+            <h2>Fees & Contributions</h2>
+            <ul>
+                <li>Founder members pay a registration fee of Ksh. 200 and a monthly contribution of Ksh. 200.</li>
+                <li>New members pay a joining fee of Ksh. 500 plus Ksh. 200 per month.</li>
+                <li>Annual membership renewal costs Ksh. 500.</li>
+            </ul>
 
-        <h2>Rights & Responsibilities</h2>
-        <ul>
-            <li>Members can vote and access welfare services.</li>
-            <li>Members must actively contribute and uphold association values.</li>
-        </ul>
-    </main>
+            <h2>Rights & Responsibilities</h2>
+            <ul>
+                <li>Members can vote and access welfare services.</li>
+                <li>Members must actively contribute and uphold association values.</li>
+            </ul>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>

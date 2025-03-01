@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentTime = new Date().getTime();
         const sessionDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
         if (currentTime - parseInt(loginTime) > sessionDuration) {
+            // Session expired
             sessionStorage.clear(); // Clear session data
             isLoggedIn = false; // Update login status
             alert("Your session has expired. Please log in again.");
@@ -45,12 +46,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value.trim();
 
+            // Check if credentials are valid
             if (validAccounts[email] && validAccounts[email] === password) {
                 sessionStorage.setItem("isLoggedIn", "true");
                 sessionStorage.setItem("loggedInUser", email); // Store logged-in user
                 sessionStorage.setItem("loginTime", new Date().getTime()); // Store login timestamp
 
-                window.location.href = "home.html"; // Redirect to home page
+                // Redirect the user to the home page
+                window.location.href = "home.html";
             } else {
                 alert("Incorrect username or password. Please try again.");
             }
@@ -85,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleButton = document.getElementById("sidebarToggle");
 
     if (toggleButton) {
-        toggleButton.addEventListener("click", function () {
+        toggleButton.addEventListener("click", function (event) {
             sidebar.classList.toggle("active");
             document.body.classList.toggle("sidebar-open"); // Helps in styling if needed
         });
@@ -99,10 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Blog Storage and Retrieval
+    // Add Blog Functionality (Admins Only)
     const addBlogBtn = document.getElementById("addBlogBtn");
     const blogPosts = document.getElementById("blogPosts");
 
+    // Load existing blogs from localStorage
     function loadBlogs() {
         const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
         blogPosts.innerHTML = blogs.length > 0 ? "" : "<p>No blog posts yet.</p>";
@@ -119,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Save a new blog to localStorage
     function saveBlog(title, content, author) {
         const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
         blogs.push({ title, content, author });
@@ -126,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         loadBlogs(); // Refresh blog list
     }
 
+    // Initialize blog posts
     loadBlogs();
 
     if (addBlogBtn) {
