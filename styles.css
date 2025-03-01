@@ -300,3 +300,30 @@ header {
         padding: 20px;
     }
 }
+/* Add Blog Button Styling */
+.add-blog-btn {
+    background-color: #228B22; /* Forest green */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-blog-btn:hover {
+    background-color: #1E7A1E; /* Darker forest green */
+    transform: scale(1.05);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.add-blog-btn:active {
+    transform: scale(0.98);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
