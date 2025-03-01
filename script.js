@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Admin and User Credentials
     const validAccounts = {
         "othienosheldon@gmail.com": "0720973275", // Admin 1
-        "mouriceambuche@gmail.com": "706657428", // Admin 2
+        "mouriceambuche@gmail.com": "0706657428", // Admin 2
         "stephenomondi667@gmail.com": "0707070767" // Regular User
     };
 
