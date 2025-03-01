@@ -1,11 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Check if the user is logged in
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    let isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+    let loggedInUser = sessionStorage.getItem("loggedInUser");
+    let loginTime = sessionStorage.getItem("loginTime"); // Get the login timestamp
 
-    // Redirect to login page if not logged in and trying to access restricted pages
+    // Admin and User Credentials
+    const validAccounts = {
+        "othienosheldon@gmail.com": "0720973275", // Admin 1
+        "mouriceambuche@gmail.com": "706657428", // Admin 2
+        "stephenomondi667@gmail.com": "0707070767" // Regular User
+    };
+
+    // Check if the session has expired (5 minutes)
+    if (isLoggedIn && loginTime) {
+        const currentTime = new Date().getTime();
+        const sessionDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
+        if (currentTime - parseInt(loginTime) > sessionDuration) {
+            // Session expired
+            sessionStorage.clear(); // Clear session data
+            isLoggedIn = false; // Update login status
+            alert("Your session has expired. Please log in again.");
+            window.location.href = "index.html"; // Redirect to login page
+            return;
+        }
+    }
+
+    // Redirect if not logged in and trying to access restricted pages
     if (!isLoggedIn && !window.location.pathname.endsWith("index.html")) {
-        alert("Log in first to access this page.");
         window.location.href = "index.html"; // Redirect to login page
+        return;
+    }
+
+    // If already logged in and on the login page, redirect to the home page
+    if (isLoggedIn && window.location.pathname.endsWith("index.html")) {
+        window.location.href = "home.html";
         return;
     }
 
@@ -15,35 +43,39 @@ document.addEventListener("DOMContentLoaded", function () {
         loginForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
 
-            // Retrieve stored admin credentials from localStorage
-            const storedAdminEmail = localStorage.getItem("adminEmail") || "admin@example.com";
-            const storedAdminPassword = localStorage.getItem("adminPassword") || "securepassword123";
+            // Check if credentials are valid
+            if (validAccounts[email] && validAccounts[email] === password) {
+                sessionStorage.setItem("isLoggedIn", "true");
+                sessionStorage.setItem("loggedInUser", email); // Store logged-in user
+                sessionStorage.setItem("loginTime", new Date().getTime()); // Store login timestamp
 
-            if (email === storedAdminEmail && password === storedAdminPassword) {
-                // Set login status in localStorage
-                localStorage.setItem("isLoggedIn", "true");
-                window.location.href = "home.html"; // Redirect to home page
+                // Redirect the user to the home page
+                window.location.href = "home.html";
             } else {
-                alert("Invalid email or password. Please try again.");
+                alert("Incorrect username or password. Please try again.");
             }
         });
     }
 
-    // Logout Functionality
+    // Logout Functionality (Works on All Pages)
     const logoutBtns = document.querySelectorAll(".logout-btn");
     logoutBtns.forEach(btn => {
         btn.addEventListener("click", function () {
-            localStorage.removeItem("isLoggedIn"); // Clear login status
-            alert("You have been logged out.");
+            sessionStorage.clear(); // Clear login session
             window.location.href = "index.html"; // Redirect to login page
         });
     });
 
-    // Simulate User Role (Admin or Member)
-    const isAdmin = localStorage.getItem("isLoggedIn") === "true";
+    // Auto Logout When Leaving the Site
+    window.addEventListener("beforeunload", function () {
+        // No need to clear sessionStorage here; we rely on the login timestamp
+    });
+
+    // Check if User is Admin
+    const isAdmin = isLoggedIn && (loggedInUser === "othienosheldon@gmail.com" || loggedInUser === "mouriceambuche@gmail.com");
 
     // Show upload buttons only if user is an admin
     const uploadButtons = document.querySelectorAll(".uploadBtn");
@@ -53,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Sidebar Toggle Functionality
     const sidebar = document.querySelector(".sidebar");
-    const content = document.querySelector(".content");
     const toggleButton = document.getElementById("sidebarToggle");
 
     if (toggleButton) {
@@ -63,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Add Blog Functionality
+    // Add Blog Functionality (Admins Only)
     const addBlogBtn = document.getElementById("addBlogBtn");
     const blogPosts = document.getElementById("blogPosts");
 
@@ -97,20 +128,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (addBlogBtn) {
         addBlogBtn.addEventListener("click", function () {
-            const email = prompt("Enter your email:");
-            const password = prompt("Enter your password:");
-
-            const storedAdminEmail = localStorage.getItem("adminEmail") || "admin@example.com";
-            const storedAdminPassword = localStorage.getItem("adminPassword") || "securepassword123";
-
-            if (email === storedAdminEmail && password === storedAdminPassword) {
-                const blogTitle = prompt("Enter the blog title:");
-                const blogContent = prompt("Enter the blog content:");
-                if (blogTitle && blogContent) {
-                    saveBlog(blogTitle, blogContent, "Admin");
-                }
-            } else {
+            if (!isAdmin) {
                 alert("You are not allowed to add a blog. Only admins can post.");
+                return;
+            }
+
+            const blogTitle = prompt("Enter the blog title:");
+            const blogContent = prompt("Enter the blog content:");
+            if (blogTitle && blogContent) {
+                saveBlog(blogTitle, blogContent, "Admin");
             }
         });
     }
